@@ -120,35 +120,12 @@ async function loadData() {
 }
 
 // ---------- Tabs ----------
-function resetDiktat() {
-  $("typedEN").value = "";
-  $("typedDE").value = "";
-  $("result1").textContent = "";
-  $("ref1").classList.add("hidden");
-  const b = $("toggleRef1");
-  if (b) b.textContent = "Referenz anzeigen";
-  stopAudio(); // falls Audio läuft
-}
-
-function resetDe2En() {
-  $("userEN").value = "";
-  $("result2").textContent = "";
-  $("ref2").classList.add("hidden");
-  stopAudio(); // sicherheitshalber
-}
-
 document.querySelectorAll(".tab").forEach(btn => {
   btn.addEventListener("click", () => {
-    // Tabs umschalten
     document.querySelectorAll(".tab").forEach(b => b.classList.remove("active"));
     document.querySelectorAll(".panel").forEach(p => p.classList.remove("active"));
     btn.classList.add("active");
     $(`tab-${btn.dataset.tab}`).classList.add("active");
-
-    // NEU: beim Wechsel resetten
-    const tab = btn.dataset.tab;
-    if (tab === "diktat") resetDiktat();
-    if (tab === "de2en") resetDe2En();
   });
 });
 
@@ -244,9 +221,7 @@ function checkCard() {
 
   fillSelect($("diktatSelect"), texts);
   fillSelect($("de2enSelect"), texts);
-  $("diktatSelect").addEventListener("change", () => {resetDiktat();
 
-  
   $("playAudio").addEventListener("click", () => {
     const t = texts[+$("diktatSelect").value];
     if (t.audio) playAudio(t.audio);
@@ -275,8 +250,7 @@ function checkCard() {
     $("dePrompt").innerHTML = `<b>Deutsch:</b><br>${t.de}`;
   }
   updateDEPrompt();
-  $("de2enSelect").addEventListener("change", () => {updateDEPrompt();
-  resetDe2En();
+  $("de2enSelect").addEventListener("change", updateDEPrompt);
 
   let deShown = true;
   $("toggleDE").addEventListener("click", () => {
