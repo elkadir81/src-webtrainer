@@ -109,6 +109,14 @@ let vocab = [];
 async function loadData() {
   texts = await fetch("seefunktexte.json").then(r => r.json());
   vocab = await fetch("vokabeln.json").then(r => r.json());
+
+  // WICHTIG: unsichtbare Leerzeichen entfernen
+  vocab = vocab.map(v => ({
+    ...v,
+    chapter: (v.chapter || "").trim(),
+    de: (v.de || "").trim(),
+    en: (v.en || "").trim()
+  }));
 }
 
 // ---------- Tabs ----------
@@ -147,11 +155,20 @@ function chapters() {
   return ["Alle", ...unique(vocab.map(v => v.chapter)).sort()];
 }
 function vocabFiltered(ch) {
-  return ch === "Alle" ? vocab : vocab.filter(v => v.chapter === ch);
+  const chapter = (ch || "").trim();
+  return chapter === "Alle" ? vocab : vocab.filter(v => (v.chapter || "").trim() === chapter);
 }
 function nextCard() {
-  const ch = $("chapterSelect").value;
+  const ch = $("chapterSelect").value.trim();
   const list = vocabFiltered(ch);
+
+  if (!list.length) {
+    currentCard = null;
+    $("vPrompt").textContent = "Keine Vokabeln in diesem Kapitel gefunden.";
+    $("vFeedback").textContent = "Tipp: Kapitel auf 'Alle' stellen.";
+    return;
+  }
+
   currentCard = list[Math.floor(Math.random() * list.length)];
   $("vFeedback").textContent = "";
   $("vAnswer").value = "";
