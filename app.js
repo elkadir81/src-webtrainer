@@ -119,18 +119,47 @@ async function loadData() {
   }));
 }
 
-// ---------- Tabs ----------
+// ---------- Reset Helpers (NEU) ----------
+function resetDiktatUI() {
+  $("typedEN").value = "";
+  $("typedDE").value = "";
+  $("result1").textContent = "";
+
+  // Referenz zurücksetzen
+  $("ref1").classList.add("hidden");
+  $("toggleRef1").textContent = "Referenz anzeigen";
+
+  stopAudio();
+}
+
+function resetDe2EnUI() {
+  $("userEN").value = "";
+  $("result2").textContent = "";
+
+  // Referenz zurücksetzen
+  $("ref2").classList.add("hidden");
+
+  stopAudio();
+}
+
+// ---------- Tabs (mit Reset beim Tab-Wechsel) ----------
 document.querySelectorAll(".tab").forEach(btn => {
   btn.addEventListener("click", () => {
     document.querySelectorAll(".tab").forEach(b => b.classList.remove("active"));
     document.querySelectorAll(".panel").forEach(p => p.classList.remove("active"));
     btn.classList.add("active");
     $(`tab-${btn.dataset.tab}`).classList.add("active");
+
+    // NEU: beim Tab-Wechsel Inhalte löschen
+    const tab = btn.dataset.tab;
+    if (tab === "diktat") resetDiktatUI();
+    if (tab === "de2en") resetDe2EnUI();
+    if (tab === "vokabeln") stopAudio(); // falls Audio noch läuft
   });
 });
 
 function fillSelect(sel, items) {
- sel.innerHTML = "";
+  sel.innerHTML = "";
   items.forEach((it, idx) => {
     const opt = document.createElement("option");
 
@@ -222,6 +251,9 @@ function checkCard() {
   fillSelect($("diktatSelect"), texts);
   fillSelect($("de2enSelect"), texts);
 
+  // NEU: Beim Wechsel des Übungstextes Eingaben löschen (Fix B)
+  $("diktatSelect").addEventListener("change", resetDiktatUI);
+
   $("playAudio").addEventListener("click", () => {
     const t = texts[+$("diktatSelect").value];
     if (t.audio) playAudio(t.audio);
@@ -250,7 +282,12 @@ function checkCard() {
     $("dePrompt").innerHTML = `<b>Deutsch:</b><br>${t.de}`;
   }
   updateDEPrompt();
-  $("de2enSelect").addEventListener("change", updateDEPrompt);
+
+  // NEU: Beim Wechsel des Übungstextes Eingaben löschen (Fix B)
+  $("de2enSelect").addEventListener("change", () => {
+    updateDEPrompt();
+    resetDe2EnUI();
+  });
 
   let deShown = true;
   $("toggleDE").addEventListener("click", () => {
