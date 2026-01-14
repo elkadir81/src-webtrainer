@@ -160,13 +160,25 @@ function nextCard() {
 function updatePrompt() {
   if (!currentCard) return;
   const dir = $("dirSelect").value;
-  $("vPrompt").textContent = dir === "de2en" ? currentCard.de : currentCard.en;
+
+  if (dir === "en2de") {
+    // EN → DE: englisches Wort anzeigen
+    $("vPrompt").textContent = currentCard.en;
+  } else {
+    // DE → EN: deutsches Wort anzeigen
+    $("vPrompt").textContent = currentCard.de;
+  }
 }
 function checkCard() {
   if (!currentCard) return;
   total++;
+
   const dir = $("dirSelect").value;
-  const solution = dir === "de2en" ? currentCard.en : currentCard.de;
+  const solution =
+    dir === "en2de"
+      ? currentCard.de   // EN → DE → deutsche Lösung
+      : currentCard.en;  // DE → EN → englische Lösung
+
   const ans = ($("vAnswer").value || "").trim();
 
   const ok = norm(ans) === norm(solution);
