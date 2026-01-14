@@ -1,0 +1,542 @@
+[
+  {
+    "chapter": "Wetter",
+    "de": "abnehmend",
+    "en": "decreasing"
+  },
+  {
+    "chapter": "Wetter",
+    "de": "Dünung",
+    "en": "swell"
+  },
+  {
+    "chapter": "Wetter",
+    "de": "mäßige Sicht",
+    "en": "moderate visibility"
+  },
+  {
+    "chapter": "Wetter",
+    "de": "schlechte Sicht",
+    "en": "poor visibility"
+  },
+  {
+    "chapter": "Wetter",
+    "de": "rasch zunehmend",
+    "en": "rapidly increasing"
+  },
+  {
+    "chapter": "Wetter",
+    "de": "raue See",
+    "en": "rough sea"
+  },
+  {
+    "chapter": "Wetter",
+    "de": "Regen",
+    "en": "rain"
+  },
+  {
+    "chapter": "Wetter",
+    "de": "Schauer",
+    "en": "showers"
+  },
+  {
+    "chapter": "Wetter",
+    "de": "rechtdrehend",
+    "en": "veering"
+  },
+  {
+    "chapter": "Wetter",
+    "de": "Sprühregen",
+    "en": "drizzle"
+  },
+  {
+    "chapter": "Wetter",
+    "de": "Stärke",
+    "en": "force"
+  },
+  {
+    "chapter": "Wetter",
+    "de": "westliche Winde",
+    "en": "westerly winds"
+  },
+  {
+    "chapter": "Wetter",
+    "de": "Sturmwarnung",
+    "en": "gale warning"
+  },
+  {
+    "chapter": "Wetter",
+    "de": "zunehmend",
+    "en": "increasing"
+  },
+  {
+    "chapter": "Wetter",
+    "de": "Vorhersagegebiet",
+    "en": "forecast area"
+  },
+  {
+    "chapter": "Wetter",
+    "de": "Wettervorhersage",
+    "en": "weather forecast"
+  },
+  {
+    "chapter": "Notfälle",
+    "de": "hat Anker verloren",
+    "en": "has lost anchor"
+  },
+  {
+    "chapter": "Notfälle",
+    "de": "zeitweise",
+    "en": "at times"
+  },
+  {
+    "chapter": "Notfälle",
+    "de": "bewusstlos",
+    "en": "unconscious"
+  },
+  {
+    "chapter": "Notfälle",
+    "de": "bisher nicht eingetroffen",
+    "en": "not yet arrived"
+  },
+  {
+    "chapter": "Notfälle",
+    "de": "Brandabwehr",
+    "en": "fire fighting"
+  },
+  {
+    "chapter": "Notfälle",
+    "de": "Sände (die Sandbänke)",
+    "en": "banks"
+  },
+  {
+    "chapter": "Notfälle",
+    "de": "dringend",
+    "en": "urgent"
+  },
+  {
+    "chapter": "Notfälle",
+    "de": "Feuer",
+    "en": "fire"
+  },
+  {
+    "chapter": "Notfälle",
+    "de": "gebrochener Mast",
+    "en": "broken mast"
+  },
+  {
+    "chapter": "Notfälle",
+    "de": "Herzinfarkt",
+    "en": "heart attack"
+  },
+  {
+    "chapter": "Notfälle",
+    "de": "Hubschrauber",
+    "en": "helicopter"
+  },
+  {
+    "chapter": "Notfälle",
+    "de": "gekentert",
+    "en": "capsized"
+  },
+  {
+    "chapter": "Notfälle",
+    "de": "Kollision",
+    "en": "collision"
+  },
+  {
+    "chapter": "Notfälle",
+    "de": "in kritischem Zustand",
+    "en": "in critical condition"
+  },
+  {
+    "chapter": "Notfälle",
+    "de": "manövrierunfähig (sein)",
+    "en": "not (to be) under command"
+  },
+  {
+    "chapter": "Notfälle",
+    "de": "Mensch über Bord",
+    "en": "person over board"
+  },
+  {
+    "chapter": "Notfälle",
+    "de": "mögliche Hilfeleistung",
+    "en": "possible assistance"
+  },
+  {
+    "chapter": "Notfälle",
+    "de": "nicht unter Kontrolle (sein)",
+    "en": "not (to be) under control"
+  },
+  {
+    "chapter": "Notfälle",
+    "de": "Rettungsfloß",
+    "en": "liferaft"
+  },
+  {
+    "chapter": "Notfälle",
+    "de": "Ruder gebrochen/defekt",
+    "en": "rudder broken"
+  },
+  {
+    "chapter": "Notfälle",
+    "de": "Schiff brennt",
+    "en": "vessel on fire"
+  },
+  {
+    "chapter": "Notfälle",
+    "de": "Schlepperhilfe",
+    "en": "tug assistance"
+  },
+  {
+    "chapter": "Notfälle",
+    "de": "schwer verletzt",
+    "en": "seriously injured"
+  },
+  {
+    "chapter": "Notfälle",
+    "de": "Seenotleitung",
+    "en": "MRCC"
+  },
+  {
+    "chapter": "Notfälle",
+    "de": "Yacht sinkt",
+    "en": "yacht is sinking"
+  },
+  {
+    "chapter": "Notfälle",
+    "de": "sofortige Hilfe",
+    "en": "immediate help"
+  },
+  {
+    "chapter": "Notfälle",
+    "de": "Wassereinbruch",
+    "en": "flooding"
+  },
+  {
+    "chapter": "Notfälle",
+    "de": "scharf Ausschau halten",
+    "en": "keep sharp lookout"
+  },
+  {
+    "chapter": "Notfälle",
+    "de": "starke Schlagseite",
+    "en": "heavy list"
+  },
+  {
+    "chapter": "Notfälle",
+    "de": "überfällig",
+    "en": "Overdue"
+  },
+  {
+    "chapter": "Notfälle",
+    "de": "Überlebende",
+    "en": "survivors"
+  },
+  {
+    "chapter": "Notfälle",
+    "de": "vom Mast gefallen",
+    "en": "fallen off the mast"
+  },
+  {
+    "chapter": "Notfälle",
+    "de": "Rote Raketen",
+    "en": "red rockets"
+  },
+  {
+    "chapter": "Notfälle",
+    "de": "Motorschaden",
+    "en": "engine trouble"
+  },
+  {
+    "chapter": "Navigation",
+    "de": "Abstand halten",
+    "en": "keep a berth"
+  },
+  {
+    "chapter": "Navigation",
+    "de": "ankern",
+    "en": "to anchor"
+  },
+  {
+    "chapter": "Navigation",
+    "de": "ansteuern",
+    "en": "to approach"
+  },
+  {
+    "chapter": "Navigation",
+    "de": "auf der/dieser Route",
+    "en": "on this route"
+  },
+  {
+    "chapter": "Navigation",
+    "de": "auf (etw.) zu",
+    "en": "towards (something)"
+  },
+  {
+    "chapter": "Navigation",
+    "de": "mit Bestimmungshafen",
+    "en": "bound for"
+  },
+  {
+    "chapter": "Navigation",
+    "de": "Fahrwasser",
+    "en": "fairway"
+  },
+  {
+    "chapter": "Navigation",
+    "de": "Gebiet",
+    "en": "area"
+  },
+  {
+    "chapter": "Navigation",
+    "de": "Geschwindigkeit",
+    "en": "speed"
+  },
+  {
+    "chapter": "Navigation",
+    "de": "in der Nähe von",
+    "en": "in vicinity of"
+  },
+  {
+    "chapter": "Navigation",
+    "de": "Kurs",
+    "en": "course"
+  },
+  {
+    "chapter": "Navigation",
+    "de": "Leucht -Heultonne",
+    "en": "light and whistle buoy"
+  },
+  {
+    "chapter": "Navigation",
+    "de": "Länge",
+    "en": "length"
+  },
+  {
+    "chapter": "Navigation",
+    "de": "Ortszeit",
+    "en": "local time"
+  },
+  {
+    "chapter": "Navigation",
+    "de": "Position",
+    "en": "position"
+  },
+  {
+    "chapter": "Navigation",
+    "de": "rechtweisende Peilung",
+    "en": "true bearing"
+  },
+  {
+    "chapter": "Navigation",
+    "de": "rechtweisender Kurs",
+    "en": "true course"
+  },
+  {
+    "chapter": "Navigation",
+    "de": "Tiefwasserweg",
+    "en": "deep water lane"
+  },
+  {
+    "chapter": "Navigation",
+    "de": "unterwegs",
+    "en": "underway"
+  },
+  {
+    "chapter": "Navigation",
+    "de": "Verkehrstrennungsgebiet",
+    "en": "traffic separation scheme"
+  },
+  {
+    "chapter": "Navigation",
+    "de": "verlöscht gemeldet",
+    "en": "reported unlit"
+  },
+  {
+    "chapter": "Navigation",
+    "de": "vorsichtig navigieren",
+    "en": "navigate carefully"
+  },
+  {
+    "chapter": "Navigation",
+    "de": "Aufbauten",
+    "en": "superstructures"
+  },
+  {
+    "chapter": "Navigation",
+    "de": "mit der Aufschrift",
+    "en": "marked with"
+  },
+  {
+    "chapter": "Navigation",
+    "de": "Fischereifahrzeug",
+    "en": "fishing vessel"
+  },
+  {
+    "chapter": "Navigation",
+    "de": "Motorraum",
+    "en": "engine room"
+  },
+  {
+    "chapter": "Navigation",
+    "de": "rot gestrichene",
+    "en": "red painted"
+  },
+  {
+    "chapter": "Navigation",
+    "de": "roter Rumpf",
+    "en": "red hull"
+  },
+  {
+    "chapter": "Navigation",
+    "de": "Steuerbord",
+    "en": "starboard"
+  },
+  {
+    "chapter": "Navigation",
+    "de": "weiße Segel",
+    "en": "white sails"
+  },
+  {
+    "chapter": "Navigation",
+    "de": "Backbord",
+    "en": "port side"
+  },
+  {
+    "chapter": "Navigation",
+    "de": "Besatzungsmitglied",
+    "en": "crew member"
+  },
+  {
+    "chapter": "Wendungen",
+    "de": "berichten an",
+    "en": "report to"
+  },
+  {
+    "chapter": "Wendungen",
+    "de": "fortgeführt",
+    "en": "in progress"
+  },
+  {
+    "chapter": "Wendungen",
+    "de": "nicht gesichtet",
+    "en": "not sighted"
+  },
+  {
+    "chapter": "Wendungen",
+    "de": "weder noch",
+    "en": "neither ... nor ..."
+  },
+  {
+    "chapter": "Wendungen",
+    "de": "werden gebeten",
+    "en": "are requested"
+  },
+  {
+    "chapter": "Wendungen",
+    "de": "zuletzt gesichtet",
+    "en": "last seen"
+  },
+  {
+    "chapter": "Wendungen",
+    "de": "zwei Personen",
+    "en": "two persons"
+  },
+  {
+    "chapter": "Wendungen",
+    "de": "zwischen",
+    "en": "between"
+  },
+  {
+    "chapter": "Wendungen",
+    "de": "an Bord",
+    "en": "on board"
+  },
+  {
+    "chapter": "Wendungen",
+    "de": "empfangen",
+    "en": "received"
+  },
+  {
+    "chapter": "Weitere nautische Begriffe",
+    "de": "Austausch",
+    "en": "replacement"
+  },
+  {
+    "chapter": "Weitere nautische Begriffe",
+    "de": "Betonnung",
+    "en": "buoyage"
+  },
+  {
+    "chapter": "Weitere nautische Begriffe",
+    "de": "Fischereigeschirr nutzen",
+    "en": "to use fishing gear"
+  },
+  {
+    "chapter": "Weitere nautische Begriffe",
+    "de": "Nachrichten für Seefahrer",
+    "en": "notices to marine rs"
+  },
+  {
+    "chapter": "Weitere nautische Begriffe",
+    "de": "Naut ische Warnung",
+    "en": "navigational warning"
+  },
+  {
+    "chapter": "Weitere nautische Begriffe",
+    "de": "Unterwasser -Kabel -Arbeiten",
+    "en": "underwater cable operations"
+  },
+  {
+    "chapter": "Weitere nautische Begriffe",
+    "de": "Küstenwache",
+    "en": "coast guard"
+  },
+  {
+    "chapter": "Meldungsstruktur",
+    "de": "ich korrigiere",
+    "en": "I correct"
+  },
+  {
+    "chapter": "Meldungsstruktur",
+    "de": "ich wiederhole",
+    "en": "I repeat"
+  },
+  {
+    "chapter": "Meldungsstruktur",
+    "de": "ich buchstabiere",
+    "en": "I spell"
+  },
+  {
+    "chapter": "Meldungsstruktur",
+    "de": "ich wiederhole und buchstabiere",
+    "en": "I repeat and spell"
+  },
+  {
+    "chapter": "Meldungsstruktur",
+    "de": "Doppel&shy;punkt",
+    "en": "colon"
+  },
+  {
+    "chapter": "Meldungsstruktur",
+    "de": "Komma",
+    "en": "decimal"
+  },
+  {
+    "chapter": "Meldungsstruktur",
+    "de": "Punkt (Satzzeichen)",
+    "en": "stop"
+  },
+  {
+    "chapter": "Meldungsstruktur",
+    "de": "neues Wort",
+    "en": "new word/next word"
+  },
+  {
+    "chapter": "Meldungsstruktur",
+    "de": "in Zahlen",
+    "en": "in figures"
+  }
+]

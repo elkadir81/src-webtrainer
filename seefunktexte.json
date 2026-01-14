@@ -1,0 +1,191 @@
+[
+  {
+    "id": 1,
+    "title": "Seefunktext 1",
+    "de": "In der Nähe der Leucht-Heultonne Humber 5 wurde ein gekentertes Rettungsfloß beobachtet. Überlebende wurden nicht gesichtet. Schiffe in dem Gebiet werden gebeten, scharf Ausschau zu halten.",
+    "en": "In vicinity of light and whistle buoy Humber 5, capsized life raft observed. Survivors were not sighted. Ships in area are requested to keep sharp lookout.",
+    "audio": "audio/text01.mp3"
+  },
+  {
+    "id": 2,
+    "title": "Seefunktext 2",
+    "de": "Seydisfjord/DFBY auf Position 61-10 N 003-45 E, nach einer Explosion Feuer im Motorraum, 2 Personen schwer verletzt, wir müssen das Schiff verlassen, benötigen sofortige Hilfe.",
+    "en": "Seydisfjord/DFBY in position 61-10 N 003-45 E, after explosion fire in engine room, 2 persons are seriously injured, we have to abandon the vessel, require immediate help.",
+    "audio": "audio/text02.mp3"
+  },
+  {
+    "id": 3,
+    "title": "Seefunktext 3",
+    "de": "M/S Freyburg/DCAW berichtet Person über Bord, um 0730 UTC zuletzt gesichtet auf Position 53-53 N 008-56 E. Alle Schiffe in der Nähe werden gebeten, scharf Ausschau zu halten und die Seenotleitung Bremen zu informieren.",
+    "en": "M/V Freyburg/DCAW reports person over board, last seen in position 53-53 N 008-56 E at 0730 UTC. All ships in vicinity are requested to keep sharp lookout and report to Maritime Rescue Co-ordination Centre Bremen.",
+    "audio": "audio/text03.mp3"
+  },
+  {
+    "id": 4,
+    "title": "Seefunktext 4",
+    "de": "Vikingbank/DESI auf Position 54-07 N 008-46 E Ruder gebrochen, treiben in rauer See auf die Sände zu, benötigen sofortige Hilfe.",
+    "en": "Vikingbank/DESI in position 54-07 N 008-46 E, rudder broken, drifting in rough sea towards the banks, require immediate assistance.",
+    "audio": "audio/text04.mp3"
+  },
+  {
+    "id": 5,
+    "title": "Seefunktext 5",
+    "de": "Mensch über Bord auf Position 54-12 N 012-03 E um 2110 UTC. Schiffe in der Nähe werden gebeten, scharf Ausschau zu halten und der Seenotleitung Bremen zu berichten.",
+    "en": "Person over board in position 54-12 N 012-03 E at 2110 UTC. Ships in vicinity are requested to keep sharp lookout and report to Maritime Rescue Co-ordination Centre Bremen.",
+    "audio": "audio/text05.mp3"
+  },
+  {
+    "id": 6,
+    "title": "Seefunktext 6",
+    "de": "M/V Kybfels C/S DEJM auf Position 48-28 N 005-14 W, habe starke Schlagseite nach Backbord. Schiffe in der Nähe bitte Position, Kurs und Geschwindigkeit für mögliche Hilfeleistung angeben.",
+    "en": "M/V Kybfels C/S DEJM in position 48-28 N 005-14 W, heavy list to port side. Ships in vicinity please indicate position, course and speed for possible assistance.",
+    "audio": "audio/text06.mp3"
+  },
+  {
+    "id": 7,
+    "title": "Seefunktext 7",
+    "de": "Rote Raketen beobachtet auf Position 55-16 N 016-23 E, rechtweisende Peilung 45 Grad, alle Schiffe in diesem Gebiet bitte scharf Ausschau halten und MRCC Göteborg berichten.",
+    "en": "Red rockets observed in position 55-16 N 016-23 E, true bearing of 45 degrees, all ships in this area please keep sharp lookout and report to MRCC Gothenburg.",
+    "audio": "audio/text07.mp3"
+  },
+  {
+    "id": 8,
+    "title": "Seefunktext 8",
+    "de": "Sturmwarnung für Skagerrak und Kattegat, West 8 bis 9, abnehmend auf 7, raue See, Schauer, mäßige bis schlechte Sicht.",
+    "en": "Gale warning for Skagerrak and Kattegat, west force 8 to 9, decreasing to force 7, rough sea, showers, moderate to poor visibility.",
+    "audio": "audio/text08.mp3"
+  },
+  {
+    "id": 9,
+    "title": "Seefunktext 9",
+    "de": "M/S Gutenfels/DEEV auf Position 16-28 S 174-51 E, Wassereinbruch, Schiff befindet sich in kritischem Zustand, Schiffe in dem Gebiet werden gebeten, diese Position anzusteuern, um Hilfe zu leisten.",
+    "en": "M/V Gutenfels/DEEV in position 16-28 S 174-51 E, flooding, ship is in critical condition, ships in area are requested to approach to this position for assistance.",
+    "audio": "audio/text09.mp3"
+  },
+  {
+    "id": 10,
+    "title": "Seefunktext 10",
+    "de": "Um 0732 UTC folgendes auf UKW-Kanal 16 empfangen: \"Mayday Fjaellfjord/LGBX auf Position 54-14 N 007-52 E, Explosionen im Maschinenraum, 6 Personen verletzt, benötigen Hubschrauber und medizinische Hilfe.\"",
+    "en": "Following received at 0732 UTC on VHF channel 16: \"Mayday Fjaellfjord/ LGBX in position 54-14 N 007-52 E, explosion in engine room, 6 persons are injured, require helicopter and medical assistance.\"",
+    "audio": "audio/text10.mp3"
+  },
+  {
+    "id": 11,
+    "title": "Seefunktext 11",
+    "de": "M/S Undine/DCBY auf Position 54-32 N 012-56 E, Feuer in den Aufbauten, Schiffe in dem Gebiet werden gebeten, Hilfe bei der Brandabwehr zu leisten.",
+    "en": "M/V Undine/DCBY in position 54-32 N 012-56 E, fire in superstructures, vessels in area are requested to assist in fire fighting.",
+    "audio": "audio/text11.mp3"
+  },
+  {
+    "id": 12,
+    "title": "Seefunktext 12",
+    "de": "M/S Hanseatic/DABR auf Position 51-10 N 003-45 E, Schiff ist wegen defekter Ruderanlage manövrierunfähig, benötige Schlepperhilfe.",
+    "en": "M/V Hanseatic/DABR in position 51-10 N 003-45 E, due to defective steering gear vessel is not under command, require tug assistance.",
+    "audio": "audio/text12.mp3"
+  },
+  {
+    "id": 13,
+    "title": "Seefunktext 13",
+    "de": "Yacht Spiekeroog/DB8434 auf Position 12 sm südlich Kap Spartivento, ein Besatzungsmitglied ist vom Mast gefallen und schwer verletzt, benötige dringend ärztliche Hilfe, rechtweisender Kurs 275°, Geschwindigkeit 13 Knoten.",
+    "en": "Yacht Spiekeroog/DB8434 in position 12 nm south of Cape Spartivento, a crew member has fallen off the mast and is seriously injured, require urgent medical assistance, true course 275 degrees, speed 13 knots.",
+    "audio": "audio/text13.mp3"
+  },
+  {
+    "id": 14,
+    "title": "Seefunktext 14",
+    "de": "Segelyacht Hadriane/DD 2663 auf Position 54-38 N 011-13 E, Kollision mit Fischereifahrzeug Meyenburg/DCYJ, Yacht sinkt nach Wassereinbruch, benötigen sofortige Hilfe.",
+    "en": "S/Y Hadriane/DD2663 in position 54-38 N 011-13 E, in collision with fishing vessel Meyenburg/DCYJ, yacht is sinking after flooding, require immediate assistance.",
+    "audio": "audio/text14.mp3"
+  },
+  {
+    "id": 15,
+    "title": "Seefunktext 15",
+    "de": "Segelboot Rubin/OZMO, 12 m Länge, roter Rumpf und weiße Segel, zwei Personen an Bord, verließ Klintholm am 16. Juli um 0600 Ortszeit mit Bestimmungshafen Visby und ist bisher dort nicht eingetroffen, Schifffahrt wird gebeten, scharf Ausschau zu halten und Lyngby Radio zu berichten.",
+    "en": "Sailing boat Rubin/OZMO, length 12 m, red hull and white sails, two persons on board, left Klintholm on July 16th at 0600 local time, bound for Visby and has not yet arrived there, shipping is requested to keep sharp lookout and report to Lyngby Radio.",
+    "audio": "audio/text15.mp3"
+  },
+  {
+    "id": 16,
+    "title": "Seefunktext 16",
+    "de": "Tazacorte/DCAX auf Position 53-54 N 008-47 E, Schiff brennt, Feuer nicht unter Kontrolle, benötige sofortige Hilfe.",
+    "en": "Tazacorte/DCAX in position 53-54 N 008-47 E, vessel on fire, fire not under control, require immediate assistance.",
+    "audio": "audio/text16.mp3"
+  },
+  {
+    "id": 17,
+    "title": "Seefunktext 17",
+    "de": "M/S Tete Oldendorff/DKOV auf Position 55-12 N 005-08 E, ein Besatzungsmitglied, 56 Jahre alt, ist bewusstlos, Verdacht auf Herzinfarkt, benötige dringend medizinische Hilfe per Hubschrauber.",
+    "en": "M/V Tete Oldendorff/DKOV in position 55-12 N 005-08 E, a crew member 56 years old, is unconscious, suspect of heart attack, require urgently medical assistance by helicopter.",
+    "audio": "audio/text17.mp3"
+  },
+  {
+    "id": 18,
+    "title": "Seefunktext 18",
+    "de": "M/S Atlantica/DEAQ auf Position 55-23 N 006-18 E, Schiff treibt wegen Motorschaden manövrierunfähig in sehr schwerer See und hoher Dünung, benötigen dringend Schlepperhilfe.",
+    "en": "M/V Atlantica/DEAQ in Position 55-23 N 006-18 E, due to engine trouble ship is not under command and drifting in very rough sea and high swell, require immediate tug assistance.",
+    "audio": "audio/text18.mp3"
+  },
+  {
+    "id": 19,
+    "title": "Seefunktext 19",
+    "de": "Segelyacht Relaxe/SWLU, Beschreibung: Länge 40 Fuß, weißer Rumpf und weiße Aufbauten, braune Segel, unterwegs von Martinique zu den Azoren, seit dem 16. Januar überfällig, Schiffe auf dieser Route werden gebeten, scharf Ausschau zu halten und der US- Küstenwache zu berichten.",
+    "en": "Sailing yacht Relaxe/SWLU, description: length 40 feet, white hull and white superstructures, brown sails, underway from Martinique to the Azores overdue since January 16th, ships on this route are requested to keep sharp lookout and report to US Coast Guard.",
+    "audio": "audio/text19.mp3"
+  },
+  {
+    "id": 20,
+    "title": "Seefunktext 20",
+    "de": "Segelyacht Acatenanco/DB2932, auf Position 61-17 N 004-28 E, gebrochener Mast, Ruderschaden, Schiff treibt manövrierunfähig in schwerer See, benötigen Schlepperhilfe.",
+    "en": "Sailing yacht Acatenanco/DB2932, in position 61-17 N 004-28 E, broken mast, damaged rudder, vessel is not under command, drifting in rough sea, require tug assistance.",
+    "audio": "audio/text20.mp3"
+  },
+  {
+    "id": 21,
+    "title": "Seefunktext 21",
+    "de": "Im Vorhersagegebiet Doggerbank starke westliche Winde, zunehmend auf Sturmstärke 8 bis 9, später rechtdrehend, zeitweise Sprühregen, mäßige bis schlechte Sicht.",
+    "en": "Forecast area Dogger Bank strong westerly winds increasing to gale force 8 to 9, veering later, drizzle at times, moderate to poor visibility.",
+    "audio": "audio/text21.mp3"
+  },
+  {
+    "id": 22,
+    "title": "Seefunktext 22",
+    "de": "Auf der Position 43-00 N 009-19 W mehrere treibende 40-Fuß-Container gesichtet, rot gestrichen, ein Container mit der Aufschrift Texascon, Schiffe in diesem Gebiet werden gebeten, vorsichtig zu navigieren.",
+    "en": "In position 43-00 N 009-19 W observed several drifting 40-feet containers, red painted, one container marked with Texascon, ships in this area are requested to navigate carefully.",
+    "audio": "audio/text22.mp3"
+  },
+  {
+    "id": 23,
+    "title": "Seefunktext 23",
+    "de": "M/S Xanthippe hat auf Position 51-28 N 002-40 E den Anker verloren. Schiffe in diesem Gebiet werden gebeten, weder zu ankern noch Fischereigeschirr zu nutzen.",
+    "en": "M/V Xanthippe in position 51-28 N 002-40 E, has lost anchor. Shipping in this area is requested neither to anchor nor to use fishing gear.",
+    "audio": "audio/text23.mp3"
+  },
+  {
+    "id": 24,
+    "title": "Seefunktext 24",
+    "de": "Fahrwasser zwischen Den Helder und Den Oever, die Leucht- und Heultonne MG 18 ist als verlöscht gemeldet. Die Schifffahrt in diesem Gebiet wird gebeten, vorsichtig zu navigieren.",
+    "en": "Fairway between Den Helder and Den Oever light and whistle buoy MG 18 is reported unlit. Shipping in this area is requested to navigate with caution.",
+    "audio": "audio/text24.mp3"
+  },
+  {
+    "id": 25,
+    "title": "Seefunktext 25",
+    "de": "Wettervorhersage für das Gebiet nördlich von Portugal: Regen oder Schauer, zeitweise Südwest 6, rasch zunehmend auf West 8, später rechtdrehend auf Nordwest 5.",
+    "en": "Weather forecast for the area north of Portugal: rain or showers, at times southwest force 6, rapidly increasing west force 8, veering to northwest force 5 later.",
+    "audio": "audio/text25.mp3"
+  },
+  {
+    "id": 26,
+    "title": "Seefunktext 26",
+    "de": "Unterwasser-Kabelarbeiten werden bis zum 16. Februar durch M/V Leon Thevesin durchgeführt. Die Schifffahrt wird gebeten, mehr als 2 sm Abstand von der Position 33-55 N 008-04 W zu halten.",
+    "en": "Underwater cable operations in progress until February 16th by M/V Leon Thevesin. Shipping is requested to keep a berth of more than 2 nm of position 33-55 N 008-04 W.",
+    "audio": "audio/text26.mp3"
+  },
+  {
+    "id": 27,
+    "title": "Seefunktext 27",
+    "de": "Nautische Warnung, westliche Ostsee: Verkehrstrennungsgebiet südlich Gedser. Austausch der Betonnung des Tiefwasserwegs und des Verkehrstrennungsgebiets wird laut Nachrichten für Seefahrer 41/01 vom 28. Mai bis 03. Juni durchgeführt werden.",
+    "en": "Navigational warning, western Baltic Sea: Traffic separation scheme south of Gedser. Replacement of buoyage of deep water lane and traffic separation scheme will be carried out from 28 May to 03 June according to German notices to mariners 41/01.",
+    "audio": "audio/text27.mp3"
+  }
+]
