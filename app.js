@@ -130,11 +130,21 @@ document.querySelectorAll(".tab").forEach(btn => {
 });
 
 function fillSelect(sel, items) {
-  sel.innerHTML = "";
+ sel.innerHTML = "";
   items.forEach((it, idx) => {
     const opt = document.createElement("option");
-    opt.value = idx;
-    opt.textContent = it.title || it;
+
+    // WICHTIG:
+    // - Bei Strings (Kapitel) soll value = Text sein (z.B. "Meldungsstruktur")
+    // - Bei Objekten (Seefunktexte) soll value = Index bleiben
+    if (typeof it === "string") {
+      opt.value = it;
+      opt.textContent = it;
+    } else {
+      opt.value = idx;
+      opt.textContent = it.title || `Eintrag ${idx + 1}`;
+    }
+
     sel.appendChild(opt);
   });
 }
