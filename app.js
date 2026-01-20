@@ -51,16 +51,16 @@ function similarity(a, b) {
 
 function lev(a, b) {
   const m = a.length, n = b.length;
-  const dp = Array.from({length: m+1}, () => Array(n+1).fill(0));
-  for (let i=0;i<=m;i++) dp[i][0]=i;
-  for (let j=0;j<=n;j++) dp[0][j]=j;
-  for (let i=1;i<=m;i++) {
-    for (let j=1;j<=n;j++) {
-      const cost = a[i-1] === b[j-1] ? 0 : 1;
+  const dp = Array.from({ length: m + 1 }, () => Array(n + 1).fill(0));
+  for (let i = 0; i <= m; i++) dp[i][0] = i;
+  for (let j = 0; j <= n; j++) dp[0][j] = j;
+  for (let i = 1; i <= m; i++) {
+    for (let j = 1; j <= n; j++) {
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
       dp[i][j] = Math.min(
-        dp[i-1][j] + 1,
-        dp[i][j-1] + 1,
-        dp[i-1][j-1] + cost
+        dp[i - 1][j] + 1,
+        dp[i][j - 1] + 1,
+        dp[i - 1][j - 1] + cost
       );
     }
   }
@@ -77,7 +77,7 @@ function grade(user, reference, mode) {
 
   const lines = [];
   lines.push(passed ? "BESTANDEN ✅" : "NICHT BESTANDEN ❌");
-  lines.push(`Ähnlichkeit: ${(sim*100).toFixed(0)}% (Schwelle ${Math.round(threshold*100)}%)`);
+  lines.push(`Ähnlichkeit: ${(sim * 100).toFixed(0)}% (Schwelle ${Math.round(threshold * 100)}%)`);
   if (!req.ok) lines.push(`Fehlende Pflichtteile: ${req.missing.join(", ")}`);
   if (required.length) lines.push(`Pflichtteile erkannt: ${required.join(", ")}`);
   return { passed, text: lines.join("\n") };
@@ -119,13 +119,12 @@ async function loadData() {
   }));
 }
 
-// ---------- Reset Helpers (NEU) ----------
+// ---------- Reset Helpers ----------
 function resetDiktatUI() {
   $("typedEN").value = "";
   $("typedDE").value = "";
   $("result1").textContent = "";
 
-  // Referenz zurücksetzen
   $("ref1").classList.add("hidden");
   $("toggleRef1").textContent = "Referenz anzeigen";
 
@@ -136,7 +135,6 @@ function resetDe2EnUI() {
   $("userEN").value = "";
   $("result2").textContent = "";
 
-  // Referenz zurücksetzen
   $("ref2").classList.add("hidden");
 
   stopAudio();
@@ -150,11 +148,11 @@ document.querySelectorAll(".tab").forEach(btn => {
     btn.classList.add("active");
     $(`tab-${btn.dataset.tab}`).classList.add("active");
 
-    // NEU: beim Tab-Wechsel Inhalte löschen
+    // beim Tab-Wechsel Inhalte löschen
     const tab = btn.dataset.tab;
     if (tab === "diktat") resetDiktatUI();
     if (tab === "de2en") resetDe2EnUI();
-    if (tab === "vokabeln") stopAudio(); // falls Audio noch läuft
+    if (tab === "vokabeln") stopAudio();
   });
 });
 
@@ -163,9 +161,8 @@ function fillSelect(sel, items) {
   items.forEach((it, idx) => {
     const opt = document.createElement("option");
 
-    // WICHTIG:
-    // - Bei Strings (Kapitel) soll value = Text sein (z.B. "Meldungsstruktur")
-    // - Bei Objekten (Seefunktexte) soll value = Index bleiben
+    // - Strings (Kapitel): value = Text
+    // - Objekte (Seefunktexte): value = Index
     if (typeof it === "string") {
       opt.value = it;
       opt.textContent = it;
@@ -186,8 +183,7 @@ function setRef(el, t) {
   `;
 }
 
-// ---------- Vocab ----------
-// ---------- Vocab (NEU: Reihenfolge + Drill + Fehlerliste + Kapitelabschluss + Shuffle) ----------
+// ---------- Vocab (Reihenfolge + Drill + Fehlerliste + Abschluss + Shuffle) ----------
 let vocabList = [];
 let vocabIndex = 0;
 let reviewQueue = []; // [{ card, dueIn }]
@@ -196,13 +192,13 @@ let currentCard = null;
 let correct = 0, total = 0;
 
 // pro Kapitel-Session
-let masteredKeys = new Set();      // korrekt beantwortete Karten (unique)
-let wrongMap = new Map();          // key -> {card, wrongCount}
-let completionTarget = 20;         // default
+let masteredKeys = new Set();
+let wrongMap = new Map();
+let completionTarget = 20;
 let sessionDone = false;
 
 function cardKey(card) {
-  return `${(card.chapter||"").trim()}||${(card.de||"").trim()}||${(card.en||"").trim()}`;
+  return `${(card.chapter || "").trim()}||${(card.de || "").trim()}||${(card.en || "").trim()}`;
 }
 
 function chapters() {
@@ -211,14 +207,12 @@ function chapters() {
 
 function vocabFiltered(ch) {
   const chapter = (ch || "").trim();
-  const list = chapter === "Alle"
+  return chapter === "Alle"
     ? vocab
     : vocab.filter(v => (v.chapter || "").trim() === chapter);
-  return list; // Datei-Reihenfolge = ruhig/konstant
 }
 
 function shuffleArray(arr) {
-  // Fisher-Yates
   for (let i = arr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [arr[i], arr[j]] = [arr[j], arr[i]];
@@ -229,8 +223,7 @@ function getSettings() {
   const reviewFirst = !!$("reviewFirstToggle")?.checked;
   const shuffle = !!$("shuffleToggle")?.checked;
   const targetVal = $("targetSelect")?.value || "20";
-  const target =
-    targetVal === "all" ? "all" : Math.max(1, parseInt(targetVal, 10) || 20);
+  const target = (targetVal === "all") ? "all" : Math.max(1, parseInt(targetVal, 10) || 20);
   return { reviewFirst, shuffle, target };
 }
 
@@ -241,16 +234,11 @@ function renderProgress() {
   $("vProgress").textContent = `Fortschritt: ${mastered}/${totalUnique}`;
   $("vScore").textContent = `Score: ${correct}/${total}`;
 
-  if (sessionDone) {
-    $("vDone").textContent = "✅ Kapitel abgeschlossen!";
-  } else {
-    $("vDone").textContent = "";
-  }
+  $("vDone").textContent = sessionDone ? "✅ Kapitel abgeschlossen!" : "";
 }
 
 function renderErrors() {
-  const items = Array.from(wrongMap.values())
-    .sort((a,b) => b.wrongCount - a.wrongCount);
+  const items = Array.from(wrongMap.values()).sort((a, b) => b.wrongCount - a.wrongCount);
 
   if (!items.length) {
     $("vErrors").innerHTML = "<b>Fehlerliste:</b><br>Keine Fehler 🎉";
@@ -270,26 +258,23 @@ function renderErrors() {
 }
 
 function rebuildVocabSession() {
-  const { reviewFirst, shuffle, target } = getSettings();
+  const { shuffle, target } = getSettings();
 
   const ch = $("chapterSelect").value.trim();
-  vocabList = vocabFiltered(ch).slice(); // copy
+  vocabList = vocabFiltered(ch).slice();
   if (shuffle) shuffleArray(vocabList);
 
   vocabIndex = 0;
   reviewQueue = [];
   currentCard = null;
 
-  // Session-Status reset
   masteredKeys = new Set();
   wrongMap = new Map();
   sessionDone = false;
 
-  // Ziel setzen
   if (target === "all") completionTarget = vocabList.length;
   else completionTarget = Math.min(target, vocabList.length);
 
-  // UI reset
   $("vFeedback").textContent = "";
   $("vAnswer").value = "";
   $("vErrors").classList.add("hidden");
@@ -302,18 +287,14 @@ function rebuildVocabSession() {
     return;
   }
 
-  nextCard(); // erste Karte
+  nextCard();
   renderProgress();
 }
 
-function updatePrompt() {
+function updateVocabPrompt() {
   if (!currentCard) return;
   const dir = $("dirSelect").value;
-
-  // EN → DE: englisches Wort anzeigen
-  if (dir === "en2de") $("vPrompt").textContent = currentCard.en;
-  // DE → EN: deutsches Wort anzeigen
-  else $("vPrompt").textContent = currentCard.de;
+  $("vPrompt").textContent = (dir === "en2de") ? currentCard.en : currentCard.de;
 }
 
 function decrementReviewDue() {
@@ -323,17 +304,13 @@ function decrementReviewDue() {
 function pickDueReviewCard(reviewFirst) {
   if (!reviewQueue.length) return null;
 
-  // Drill-Modus: Wiederholungen *wirklich* zuerst.
-  // Wenn noch nichts fällig ist, machen wir die nächste Wiederholung "sofort fällig".
   if (reviewFirst) {
-    // erst normal runterzählen
     decrementReviewDue();
 
-    // fällige suchen
     let idx = reviewQueue.findIndex(x => x.dueIn <= 0);
     if (idx >= 0) return reviewQueue.splice(idx, 1)[0].card;
 
-    // keine fällig -> die mit kleinster dueIn forcieren
+    // nichts fällig -> die schnellste forcieren
     let minIdx = 0;
     for (let i = 1; i < reviewQueue.length; i++) {
       if (reviewQueue[i].dueIn < reviewQueue[minIdx].dueIn) minIdx = i;
@@ -342,7 +319,6 @@ function pickDueReviewCard(reviewFirst) {
     return reviewQueue.splice(minIdx, 1)[0].card;
   }
 
-  // Normal: nur fällige Wiederholungen
   decrementReviewDue();
   const idx = reviewQueue.findIndex(x => x.dueIn <= 0);
   if (idx >= 0) return reviewQueue.splice(idx, 1)[0].card;
@@ -351,7 +327,7 @@ function pickDueReviewCard(reviewFirst) {
 
 function nextSequentialCard() {
   if (!vocabList.length) return null;
-  if (vocabIndex >= vocabList.length) vocabIndex = 0; // loop
+  if (vocabIndex >= vocabList.length) vocabIndex = 0;
   const c = vocabList[vocabIndex];
   vocabIndex++;
   return c;
@@ -361,20 +337,16 @@ function nextCard() {
   if (!vocabList.length) return;
 
   const { reviewFirst } = getSettings();
-
-  // zuerst Wiederholung (wenn fällig / Drill)
   const due = pickDueReviewCard(reviewFirst);
   currentCard = due || nextSequentialCard();
 
   $("vFeedback").textContent = "";
   $("vAnswer").value = "";
-  updatePrompt();
+  updateVocabPrompt();
 }
 
 function queueForRepeat(card) {
   const { reviewFirst } = getSettings();
-
-  // Drill = schneller wiederholen
   const delayCards = reviewFirst ? 2 : 3;
 
   const key = cardKey(card);
@@ -383,7 +355,6 @@ function queueForRepeat(card) {
 }
 
 function checkCompletion() {
-  // abgeschlossen, wenn Ziel erreicht UND keine Wiederholungen mehr offen
   if (sessionDone) return;
 
   const mastered = masteredKeys.size;
@@ -408,18 +379,14 @@ function checkCard() {
   if (ok) {
     correct++;
     $("vFeedback").textContent = "Richtig ✅";
-
-    // als "gemeistert" zählen (unique)
     masteredKeys.add(cardKey(currentCard));
   } else {
     $("vFeedback").textContent = `Falsch ❌ — richtig: ${solution}`;
 
-    // Fehlerliste
     const key = cardKey(currentCard);
     const prev = wrongMap.get(key);
     wrongMap.set(key, { card: currentCard, wrongCount: prev ? prev.wrongCount + 1 : 1 });
 
-    // Wiederholen
     queueForRepeat(currentCard);
   }
 
@@ -427,7 +394,6 @@ function checkCard() {
   renderProgress();
 }
 
-// Fehlerliste Toggle
 function toggleErrors() {
   const el = $("vErrors");
   const hidden = el.classList.contains("hidden");
@@ -439,31 +405,33 @@ function toggleErrors() {
   }
 }
 
-
 // ---------- Main ----------
 (async function main() {
   await loadData();
 
+  // Texte
   fillSelect($("diktatSelect"), texts);
   fillSelect($("de2enSelect"), texts);
 
-  // NEU: Beim Wechsel des Übungstextes Eingaben löschen (Fix B)
+  // Fix B: Beim Wechsel des Übungstextes Eingaben löschen
   $("diktatSelect").addEventListener("change", resetDiktatUI);
 
+  // Audio
   $("playAudio").addEventListener("click", () => {
     const t = texts[+$("diktatSelect").value];
     if (t.audio) playAudio(t.audio);
     else alert("Keine Audiodatei für diesen Text gefunden.");
   });
-
   $("stopAudio").addEventListener("click", stopAudio);
 
+  // Diktat Bewertung
   $("gradeDE").addEventListener("click", () => {
     const t = texts[+$("diktatSelect").value];
     const res = grade($("typedDE").value, t.de, "de");
     $("result1").textContent = res.text;
   });
 
+  // Referenz Diktat
   let ref1Shown = false;
   $("toggleRef1").addEventListener("click", () => {
     ref1Shown = !ref1Shown;
@@ -473,24 +441,27 @@ function toggleErrors() {
     $("toggleRef1").textContent = ref1Shown ? "Referenz ausblenden" : "Referenz anzeigen";
   });
 
+  // DE -> EN Prompt
   function updateDEPrompt() {
     const t = texts[+$("de2enSelect").value];
     $("dePrompt").innerHTML = `<b>Deutsch:</b><br>${t.de}`;
   }
   updateDEPrompt();
 
-  // NEU: Beim Wechsel des Übungstextes Eingaben löschen (Fix B)
+  // Fix B: Beim Wechsel des Übungstextes Eingaben löschen (DE->EN)
   $("de2enSelect").addEventListener("change", () => {
     updateDEPrompt();
     resetDe2EnUI();
   });
 
+  // DE anzeigen/ausblenden
   let deShown = true;
   $("toggleDE").addEventListener("click", () => {
     deShown = !deShown;
     $("dePrompt").classList.toggle("hidden", !deShown);
   });
 
+  // Referenz EN im DE->EN Tab
   let ref2Shown = false;
   $("toggleRef2").addEventListener("click", () => {
     ref2Shown = !ref2Shown;
@@ -499,35 +470,32 @@ function toggleErrors() {
     $("ref2").classList.toggle("hidden", !ref2Shown);
   });
 
+  // DE->EN Bewertung
   $("gradeEN").addEventListener("click", () => {
     const t = texts[+$("de2enSelect").value];
     const res = grade($("userEN").value, t.en, "en");
     $("result2").textContent = res.text;
   });
 
+  // Vokabeln init
   fillSelect($("chapterSelect"), chapters());
 
-// neu: Session neu aufbauen bei Änderungen
-$("chapterSelect").addEventListener("change", rebuildVocabSession);
-$("dirSelect").addEventListener("change", () => {
-  $("vFeedback").textContent = "";
-  $("vAnswer").value = "";
-  updatePrompt();
-});
+  $("chapterSelect").addEventListener("change", rebuildVocabSession);
+  $("dirSelect").addEventListener("change", () => {
+    $("vFeedback").textContent = "";
+    $("vAnswer").value = "";
+    updateVocabPrompt();
+  });
 
-// neue Schalter
-$("reviewFirstToggle").addEventListener("change", rebuildVocabSession);
-$("shuffleToggle").addEventListener("change", rebuildVocabSession);
-$("targetSelect").addEventListener("change", rebuildVocabSession);
+  $("reviewFirstToggle").addEventListener("change", rebuildVocabSession);
+  $("shuffleToggle").addEventListener("change", rebuildVocabSession);
+  $("targetSelect").addEventListener("change", rebuildVocabSession);
 
-// Fehlerliste Button
-$("showErrorsBtn").addEventListener("click", toggleErrors);
+  $("showErrorsBtn").addEventListener("click", toggleErrors);
 
-$("vNext").addEventListener("click", nextCard);
-$("vCheck").addEventListener("click", checkCard);
-$("vAnswer").addEventListener("keydown", (e) => { if (e.key === "Enter") checkCard(); });
+  $("vNext").addEventListener("click", nextCard);
+  $("vCheck").addEventListener("click", checkCard);
+  $("vAnswer").addEventListener("keydown", (e) => { if (e.key === "Enter") checkCard(); });
 
-// Start:
-rebuildVocabSession();
-
+  rebuildVocabSession();
 })();
