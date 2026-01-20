@@ -13,6 +13,38 @@ function norm(s) {
 
 function unique(arr) { return [...new Set(arr)]; }
 
+// ---------- Kapitel exakt wie in der PDF ----------
+const CHAPTER_ORDER = [
+  "Wetter",
+  "Notfälle",
+  "Navigation",
+  "Schiffsmerkmale",
+  "Wendungen",
+  "Weitere nautische Begriffe",
+  "Meldungsstruktur"
+];
+
+function normalizeChapterName(ch) {
+  const c = (ch || "").trim();
+  const key = c.toLowerCase();
+
+  if (key === "wetter") return "Wetter";
+  if (key === "navigation") return "Navigation";
+  if (key === "wendungen") return "Wendungen";
+  if (key === "meldungsstruktur") return "Meldungsstruktur";
+
+  // Notfälle Varianten
+  if (key === "notfaelle" || key === "notfälle" || key === "notfalle") return "Notfälle";
+
+  // Weitere nautische Begriffe Varianten
+  if (key === "weitere nautische begriffe") return "Weitere nautische Begriffe";
+
+  // Schiffsmerkmale Varianten
+  if (key === "schiffsmerkmale" || key === "schiffs merkmale") return "Schiffsmerkmale";
+
+  return c;
+}
+
 function extractRequiredTokens(reference) {
   const coord = reference.match(/\b\d{2}-\d{2}\s[NS]\s\d{3}-\d{2}\s[EW]\b/g) || [];
   const calls = (reference.match(/\/[A-Z0-9]{3,6}\b/g) || []).map(s => s.slice(1));
@@ -110,10 +142,10 @@ async function loadData() {
   texts = await fetch("seefunktexte.json").then(r => r.json());
   vocab = await fetch("vokabeln.json").then(r => r.json());
 
-  // WICHTIG: unsichtbare Leerzeichen entfernen
+  // Kapitel + Texte säubern & normalisieren
   vocab = vocab.map(v => ({
     ...v,
-    chapter: (v.chapter || "").trim(),
+    chapter: normalizeChapterName(v.chapter),
     de: (v.de || "").trim(),
     en: (v.en || "").trim()
   }));
@@ -124,19 +156,15 @@ function resetDiktatUI() {
   $("typedEN").value = "";
   $("typedDE").value = "";
   $("result1").textContent = "";
-
   $("ref1").classList.add("hidden");
   $("toggleRef1").textContent = "Referenz anzeigen";
-
   stopAudio();
 }
 
 function resetDe2EnUI() {
   $("userEN").value = "";
   $("result2").textContent = "";
-
   $("ref2").classList.add("hidden");
-
   stopAudio();
 }
 
@@ -148,7 +176,6 @@ document.querySelectorAll(".tab").forEach(btn => {
     btn.classList.add("active");
     $(`tab-${btn.dataset.tab}`).classList.add("active");
 
-    // beim Tab-Wechsel Inhalte löschen
     const tab = btn.dataset.tab;
     if (tab === "diktat") resetDiktatUI();
     if (tab === "de2en") resetDe2EnUI();
@@ -161,8 +188,8 @@ function fillSelect(sel, items) {
   items.forEach((it, idx) => {
     const opt = document.createElement("option");
 
-    // - Strings (Kapitel): value = Text
-    // - Objekte (Seefunktexte): value = Index
+    // Strings (Kapitel): value = Text
+    // Objekte (Seefunktexte): value = Index
     if (typeof it === "string") {
       opt.value = it;
       opt.textContent = it;
@@ -201,8 +228,9 @@ function cardKey(card) {
   return `${(card.chapter || "").trim()}||${(card.de || "").trim()}||${(card.en || "").trim()}`;
 }
 
+// Kapitel-Auswahl exakt wie PDF (Reihenfolge)
 function chapters() {
-  return ["Alle", ...unique(vocab.map(v => (v.chapter || "").trim())).sort()];
+  return ["Alle", ...CHAPTER_ORDER];
 }
 
 function vocabFiltered(ch) {
@@ -233,7 +261,6 @@ function renderProgress() {
 
   $("vProgress").textContent = `Fortschritt: ${mastered}/${totalUnique}`;
   $("vScore").textContent = `Score: ${correct}/${total}`;
-
   $("vDone").textContent = sessionDone ? "✅ Kapitel abgeschlossen!" : "";
 }
 
@@ -261,7 +288,7 @@ function rebuildVocabSession() {
   const { shuffle, target } = getSettings();
 
   const ch = $("chapterSelect").value.trim();
-  vocabList = vocabFiltered(ch).slice();
+  vocabList = vocabFiltered(ch).slice(); // copy
   if (shuffle) shuffleArray(vocabList);
 
   vocabIndex = 0;
@@ -282,7 +309,7 @@ function rebuildVocabSession() {
 
   if (!vocabList.length) {
     $("vPrompt").textContent = "Keine Vokabeln in diesem Kapitel gefunden.";
-    $("vFeedback").textContent = "Tipp: Kapitel auf 'Alle' stellen.";
+    $("vFeedback").textContent = "Tipp: anderes Kapitel wählen oder 'Alle'.";
     renderProgress();
     return;
   }
@@ -327,7 +354,7 @@ function pickDueReviewCard(reviewFirst) {
 
 function nextSequentialCard() {
   if (!vocabList.length) return null;
-  if (vocabIndex >= vocabList.length) vocabIndex = 0;
+  if (vocabIndex >= vocabList.length) vocabIndex = 0; // loop
   const c = vocabList[vocabIndex];
   vocabIndex++;
   return c;
@@ -477,7 +504,7 @@ function toggleErrors() {
     $("result2").textContent = res.text;
   });
 
-  // Vokabeln init
+  // Vokabeln init (Kapitel exakt wie PDF)
   fillSelect($("chapterSelect"), chapters());
 
   $("chapterSelect").addEventListener("change", rebuildVocabSession);
