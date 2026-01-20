@@ -74,12 +74,60 @@
     </section>
 
     <section id="tab-vokabeln" class="panel">
-      <div class="row">
-        <label for="chapterSelect">Kapitel:</label>
-        <select id="chapterSelect"></select>
+      <section id="tab-vokabeln" class="panel">
+  <div class="row">
+    <label for="chapterSelect">Kapitel:</label>
+    <select id="chapterSelect"></select>
 
-        <label for="dirSelect">Richtung:</label>
-        <select id="dirSelect">
+    <label for="dirSelect">Richtung:</label>
+    <select id="dirSelect">
+      <option value="de2en">DE → EN</option>
+      <option value="en2de">EN → DE</option>
+    </select>
+  </div>
+
+  <div class="row">
+    <label class="inline">
+      <input type="checkbox" id="reviewFirstToggle" checked>
+      Wiederholungen zuerst (Drill)
+    </label>
+
+    <label class="inline">
+      <input type="checkbox" id="shuffleToggle">
+      Shuffle (zufällig)
+    </label>
+
+    <label for="targetSelect">Ziel:</label>
+    <select id="targetSelect">
+      <option value="20" selected>20 richtig</option>
+      <option value="10">10 richtig</option>
+      <option value="all">Alle im Kapitel</option>
+    </select>
+
+    <button id="showErrorsBtn">Fehlerliste</button>
+  </div>
+
+  <div class="card">
+    <div class="prompt" id="vPrompt">—</div>
+    <input id="vAnswer" type="text" placeholder="Antwort eingeben..." />
+    <div class="row buttons">
+      <button id="vCheck">Prüfen</button>
+      <button id="vNext">Nächste</button>
+    </div>
+
+    <div id="vFeedback" class="feedback"></div>
+
+    <div class="row">
+      <div id="vProgress" class="score">Fortschritt: 0/0</div>
+      <div id="vScore" class="score">Score: 0/0</div>
+    </div>
+
+    <div id="vDone" class="feedback" style="font-weight:600;"></div>
+
+    <div id="vErrors" class="ref hidden"></div>
+  </div>
+</section>
+
           <option value="de2en">DE → EN</option>
           <option value="en2de">EN → DE</option>
         </select>
