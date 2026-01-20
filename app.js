@@ -187,62 +187,258 @@ function setRef(el, t) {
 }
 
 // ---------- Vocab ----------
+// ---------- Vocab (NEU: Reihenfolge + Drill + Fehlerliste + Kapitelabschluss + Shuffle) ----------
+let vocabList = [];
+let vocabIndex = 0;
+let reviewQueue = []; // [{ card, dueIn }]
 let currentCard = null;
+
 let correct = 0, total = 0;
 
-function chapters() {
-  return ["Alle", ...unique(vocab.map(v => v.chapter)).sort()];
+// pro Kapitel-Session
+let masteredKeys = new Set();      // korrekt beantwortete Karten (unique)
+let wrongMap = new Map();          // key -> {card, wrongCount}
+let completionTarget = 20;         // default
+let sessionDone = false;
+
+function cardKey(card) {
+  return `${(card.chapter||"").trim()}||${(card.de||"").trim()}||${(card.en||"").trim()}`;
 }
+
+function chapters() {
+  return ["Alle", ...unique(vocab.map(v => (v.chapter || "").trim())).sort()];
+}
+
 function vocabFiltered(ch) {
   const chapter = (ch || "").trim();
-  return chapter === "Alle" ? vocab : vocab.filter(v => (v.chapter || "").trim() === chapter);
+  const list = chapter === "Alle"
+    ? vocab
+    : vocab.filter(v => (v.chapter || "").trim() === chapter);
+  return list; // Datei-Reihenfolge = ruhig/konstant
 }
-function nextCard() {
-  const ch = $("chapterSelect").value.trim();
-  const list = vocabFiltered(ch);
 
-  if (!list.length) {
-    currentCard = null;
-    $("vPrompt").textContent = "Keine Vokabeln in diesem Kapitel gefunden.";
-    $("vFeedback").textContent = "Tipp: Kapitel auf 'Alle' stellen.";
+function shuffleArray(arr) {
+  // Fisher-Yates
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+}
+
+function getSettings() {
+  const reviewFirst = !!$("reviewFirstToggle")?.checked;
+  const shuffle = !!$("shuffleToggle")?.checked;
+  const targetVal = $("targetSelect")?.value || "20";
+  const target =
+    targetVal === "all" ? "all" : Math.max(1, parseInt(targetVal, 10) || 20);
+  return { reviewFirst, shuffle, target };
+}
+
+function renderProgress() {
+  const totalUnique = vocabList.length;
+  const mastered = masteredKeys.size;
+
+  $("vProgress").textContent = `Fortschritt: ${mastered}/${totalUnique}`;
+  $("vScore").textContent = `Score: ${correct}/${total}`;
+
+  if (sessionDone) {
+    $("vDone").textContent = "✅ Kapitel abgeschlossen!";
+  } else {
+    $("vDone").textContent = "";
+  }
+}
+
+function renderErrors() {
+  const items = Array.from(wrongMap.values())
+    .sort((a,b) => b.wrongCount - a.wrongCount);
+
+  if (!items.length) {
+    $("vErrors").innerHTML = "<b>Fehlerliste:</b><br>Keine Fehler 🎉";
     return;
   }
 
-  currentCard = list[Math.floor(Math.random() * list.length)];
+  let html = "<b>Fehlerliste (nur falsche):</b><br><ol>";
+  for (const it of items) {
+    html += `<li>
+      <div><b>DE:</b> ${it.card.de}</div>
+      <div><b>EN:</b> ${it.card.en}</div>
+      <div><b>Falsch:</b> ${it.wrongCount}×</div>
+    </li><br>`;
+  }
+  html += "</ol>";
+  $("vErrors").innerHTML = html;
+}
+
+function rebuildVocabSession() {
+  const { reviewFirst, shuffle, target } = getSettings();
+
+  const ch = $("chapterSelect").value.trim();
+  vocabList = vocabFiltered(ch).slice(); // copy
+  if (shuffle) shuffleArray(vocabList);
+
+  vocabIndex = 0;
+  reviewQueue = [];
+  currentCard = null;
+
+  // Session-Status reset
+  masteredKeys = new Set();
+  wrongMap = new Map();
+  sessionDone = false;
+
+  // Ziel setzen
+  if (target === "all") completionTarget = vocabList.length;
+  else completionTarget = Math.min(target, vocabList.length);
+
+  // UI reset
   $("vFeedback").textContent = "";
   $("vAnswer").value = "";
-  updatePrompt();
+  $("vErrors").classList.add("hidden");
+  $("vErrors").textContent = "";
+
+  if (!vocabList.length) {
+    $("vPrompt").textContent = "Keine Vokabeln in diesem Kapitel gefunden.";
+    $("vFeedback").textContent = "Tipp: Kapitel auf 'Alle' stellen.";
+    renderProgress();
+    return;
+  }
+
+  nextCard(); // erste Karte
+  renderProgress();
 }
+
 function updatePrompt() {
   if (!currentCard) return;
   const dir = $("dirSelect").value;
 
-  if (dir === "en2de") {
-    // EN → DE: englisches Wort anzeigen
-    $("vPrompt").textContent = currentCard.en;
-  } else {
-    // DE → EN: deutsches Wort anzeigen
-    $("vPrompt").textContent = currentCard.de;
+  // EN → DE: englisches Wort anzeigen
+  if (dir === "en2de") $("vPrompt").textContent = currentCard.en;
+  // DE → EN: deutsches Wort anzeigen
+  else $("vPrompt").textContent = currentCard.de;
+}
+
+function decrementReviewDue() {
+  reviewQueue.forEach(x => x.dueIn--);
+}
+
+function pickDueReviewCard(reviewFirst) {
+  if (!reviewQueue.length) return null;
+
+  // Drill-Modus: Wiederholungen *wirklich* zuerst.
+  // Wenn noch nichts fällig ist, machen wir die nächste Wiederholung "sofort fällig".
+  if (reviewFirst) {
+    // erst normal runterzählen
+    decrementReviewDue();
+
+    // fällige suchen
+    let idx = reviewQueue.findIndex(x => x.dueIn <= 0);
+    if (idx >= 0) return reviewQueue.splice(idx, 1)[0].card;
+
+    // keine fällig -> die mit kleinster dueIn forcieren
+    let minIdx = 0;
+    for (let i = 1; i < reviewQueue.length; i++) {
+      if (reviewQueue[i].dueIn < reviewQueue[minIdx].dueIn) minIdx = i;
+    }
+    reviewQueue[minIdx].dueIn = 0;
+    return reviewQueue.splice(minIdx, 1)[0].card;
+  }
+
+  // Normal: nur fällige Wiederholungen
+  decrementReviewDue();
+  const idx = reviewQueue.findIndex(x => x.dueIn <= 0);
+  if (idx >= 0) return reviewQueue.splice(idx, 1)[0].card;
+  return null;
+}
+
+function nextSequentialCard() {
+  if (!vocabList.length) return null;
+  if (vocabIndex >= vocabList.length) vocabIndex = 0; // loop
+  const c = vocabList[vocabIndex];
+  vocabIndex++;
+  return c;
+}
+
+function nextCard() {
+  if (!vocabList.length) return;
+
+  const { reviewFirst } = getSettings();
+
+  // zuerst Wiederholung (wenn fällig / Drill)
+  const due = pickDueReviewCard(reviewFirst);
+  currentCard = due || nextSequentialCard();
+
+  $("vFeedback").textContent = "";
+  $("vAnswer").value = "";
+  updatePrompt();
+}
+
+function queueForRepeat(card) {
+  const { reviewFirst } = getSettings();
+
+  // Drill = schneller wiederholen
+  const delayCards = reviewFirst ? 2 : 3;
+
+  const key = cardKey(card);
+  const exists = reviewQueue.some(x => cardKey(x.card) === key);
+  if (!exists) reviewQueue.push({ card, dueIn: delayCards });
+}
+
+function checkCompletion() {
+  // abgeschlossen, wenn Ziel erreicht UND keine Wiederholungen mehr offen
+  if (sessionDone) return;
+
+  const mastered = masteredKeys.size;
+  const targetReached = mastered >= completionTarget;
+
+  if (targetReached && reviewQueue.length === 0) {
+    sessionDone = true;
   }
 }
+
 function checkCard() {
-  if (!currentCard) return;
+  if (!currentCard || !vocabList.length) return;
+
   total++;
 
   const dir = $("dirSelect").value;
-  const solution =
-    dir === "en2de"
-      ? currentCard.de   // EN → DE → deutsche Lösung
-      : currentCard.en;  // DE → EN → englische Lösung
-
+  const solution = (dir === "en2de") ? currentCard.de : currentCard.en;
   const ans = ($("vAnswer").value || "").trim();
 
   const ok = norm(ans) === norm(solution);
-  if (ok) correct++;
 
-  $("vFeedback").textContent = ok ? "Richtig ✅" : `Falsch ❌ — richtig: ${solution}`;
-  $("vScore").textContent = `Score: ${correct}/${total}`;
+  if (ok) {
+    correct++;
+    $("vFeedback").textContent = "Richtig ✅";
+
+    // als "gemeistert" zählen (unique)
+    masteredKeys.add(cardKey(currentCard));
+  } else {
+    $("vFeedback").textContent = `Falsch ❌ — richtig: ${solution}`;
+
+    // Fehlerliste
+    const key = cardKey(currentCard);
+    const prev = wrongMap.get(key);
+    wrongMap.set(key, { card: currentCard, wrongCount: prev ? prev.wrongCount + 1 : 1 });
+
+    // Wiederholen
+    queueForRepeat(currentCard);
+  }
+
+  checkCompletion();
+  renderProgress();
 }
+
+// Fehlerliste Toggle
+function toggleErrors() {
+  const el = $("vErrors");
+  const hidden = el.classList.contains("hidden");
+  if (hidden) {
+    renderErrors();
+    el.classList.remove("hidden");
+  } else {
+    el.classList.add("hidden");
+  }
+}
+
 
 // ---------- Main ----------
 (async function main() {
@@ -310,12 +506,28 @@ function checkCard() {
   });
 
   fillSelect($("chapterSelect"), chapters());
-  $("chapterSelect").addEventListener("change", nextCard);
-  $("dirSelect").addEventListener("change", updatePrompt);
 
-  $("vNext").addEventListener("click", nextCard);
-  $("vCheck").addEventListener("click", checkCard);
-  $("vAnswer").addEventListener("keydown", (e) => { if (e.key === "Enter") checkCard(); });
+// neu: Session neu aufbauen bei Änderungen
+$("chapterSelect").addEventListener("change", rebuildVocabSession);
+$("dirSelect").addEventListener("change", () => {
+  $("vFeedback").textContent = "";
+  $("vAnswer").value = "";
+  updatePrompt();
+});
 
-  nextCard();
+// neue Schalter
+$("reviewFirstToggle").addEventListener("change", rebuildVocabSession);
+$("shuffleToggle").addEventListener("change", rebuildVocabSession);
+$("targetSelect").addEventListener("change", rebuildVocabSession);
+
+// Fehlerliste Button
+$("showErrorsBtn").addEventListener("click", toggleErrors);
+
+$("vNext").addEventListener("click", nextCard);
+$("vCheck").addEventListener("click", checkCard);
+$("vAnswer").addEventListener("keydown", (e) => { if (e.key === "Enter") checkCard(); });
+
+// Start:
+rebuildVocabSession();
+
 })();
