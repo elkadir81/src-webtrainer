@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SRC Web-Trainer (lokal, Original-Audio)</title>
+  <title>SRC Web-Trainer</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -17,6 +17,7 @@
   </header>
 
   <main>
+    <!-- TAB 1: Diktat -->
     <section id="tab-diktat" class="panel active">
       <div class="row">
         <label for="diktatSelect">Übungstext:</label>
@@ -49,6 +50,7 @@
       <div id="ref1" class="ref hidden"></div>
     </section>
 
+    <!-- TAB 2: DE -> EN -->
     <section id="tab-de2en" class="panel">
       <div class="row">
         <label for="de2enSelect">Übungstext:</label>
@@ -73,64 +75,38 @@
       <div id="ref2" class="ref hidden"></div>
     </section>
 
+    <!-- TAB 3: Vokabeln -->
     <section id="tab-vokabeln" class="panel">
-      <section id="tab-vokabeln" class="panel">
-  <div class="row">
-    <label for="chapterSelect">Kapitel:</label>
-    <select id="chapterSelect"></select>
+      <div class="row">
+        <label for="chapterSelect">Kapitel:</label>
+        <select id="chapterSelect"></select>
 
-    <label for="dirSelect">Richtung:</label>
-    <select id="dirSelect">
-      <option value="de2en">DE → EN</option>
-      <option value="en2de">EN → DE</option>
-    </select>
-  </div>
-
-  <div class="row">
-    <label class="inline">
-      <input type="checkbox" id="reviewFirstToggle" checked>
-      Wiederholungen zuerst (Drill)
-    </label>
-
-    <label class="inline">
-      <input type="checkbox" id="shuffleToggle">
-      Shuffle (zufällig)
-    </label>
-
-    <label for="targetSelect">Ziel:</label>
-    <select id="targetSelect">
-      <option value="20" selected>20 richtig</option>
-      <option value="10">10 richtig</option>
-      <option value="all">Alle im Kapitel</option>
-    </select>
-
-    <button id="showErrorsBtn">Fehlerliste</button>
-  </div>
-
-  <div class="card">
-    <div class="prompt" id="vPrompt">—</div>
-    <input id="vAnswer" type="text" placeholder="Antwort eingeben..." />
-    <div class="row buttons">
-      <button id="vCheck">Prüfen</button>
-      <button id="vNext">Nächste</button>
-    </div>
-
-    <div id="vFeedback" class="feedback"></div>
-
-    <div class="row">
-      <div id="vProgress" class="score">Fortschritt: 0/0</div>
-      <div id="vScore" class="score">Score: 0/0</div>
-    </div>
-
-    <div id="vDone" class="feedback" style="font-weight:600;"></div>
-
-    <div id="vErrors" class="ref hidden"></div>
-  </div>
-</section>
-
+        <label for="dirSelect">Richtung:</label>
+        <select id="dirSelect">
           <option value="de2en">DE → EN</option>
           <option value="en2de">EN → DE</option>
         </select>
+      </div>
+
+      <div class="row">
+        <label class="inline">
+          <input type="checkbox" id="reviewFirstToggle" checked>
+          Wiederholungen zuerst (Drill)
+        </label>
+
+        <label class="inline">
+          <input type="checkbox" id="shuffleToggle">
+          Shuffle (zufällig)
+        </label>
+
+        <label for="targetSelect">Ziel:</label>
+        <select id="targetSelect">
+          <option value="20" selected>20 richtig</option>
+          <option value="10">10 richtig</option>
+          <option value="all">Alle im Kapitel</option>
+        </select>
+
+        <button id="showErrorsBtn">Fehlerliste</button>
       </div>
 
       <div class="card">
@@ -140,8 +116,17 @@
           <button id="vCheck">Prüfen</button>
           <button id="vNext">Nächste</button>
         </div>
+
         <div id="vFeedback" class="feedback"></div>
-        <div id="vScore" class="score">Score: 0/0</div>
+
+        <div class="row">
+          <div id="vProgress" class="score">Fortschritt: 0/0</div>
+          <div id="vScore" class="score">Score: 0/0</div>
+        </div>
+
+        <div id="vDone" class="feedback" style="font-weight:600;"></div>
+
+        <div id="vErrors" class="ref hidden"></div>
       </div>
     </section>
   </main>
