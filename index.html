@@ -5,6 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SRC Web-Trainer</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* kleine Ergänzungen */
+    .row { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+    .row.buttons { margin-top:10px; }
+    .grid2 { display:grid; grid-template-columns: 1fr 1fr; gap:14px; }
+    @media (max-width: 900px){ .grid2{ grid-template-columns:1fr; } }
+    textarea { width:100%; min-height:140px; }
+    .card { border:1px solid #ddd; border-radius:12px; padding:14px; }
+    .prompt { font-size: 1.3rem; font-weight:700; padding:8px 0; }
+    .feedback { white-space: pre-wrap; margin-top:10px; }
+    .score { opacity:.8; }
+    .hint { opacity:.7; font-size:.9rem; }
+    .inline { display:flex; gap:8px; align-items:center; }
+  </style>
 </head>
 <body>
   <header>
@@ -13,6 +27,8 @@
       <button class="tab active" data-tab="diktat">Diktat</button>
       <button class="tab" data-tab="de2en">DE → EN</button>
       <button class="tab" data-tab="vokabeln">Vokabeln</button>
+      <button class="tab" data-tab="lagen">Übungslagen</button>
+      <button class="tab" data-tab="pruefung">Prüfung Übungen</button>
     </nav>
   </header>
 
@@ -96,7 +112,7 @@
 
         <label class="inline">
           <input type="checkbox" id="shuffleToggle">
-          Shuffle (zufällig)
+          Shuffle
         </label>
 
         <label for="targetSelect">Ziel:</label>
@@ -125,9 +141,58 @@
         </div>
 
         <div id="vDone" class="feedback" style="font-weight:600;"></div>
-
         <div id="vErrors" class="ref hidden"></div>
       </div>
+    </section>
+
+    <!-- TAB 4: Übungslagen -->
+    <section id="tab-lagen" class="panel">
+      <div class="row">
+        <label for="lageSelect">Übungslage:</label>
+        <select id="lageSelect"></select>
+
+        <button id="lagePrev">◀︎</button>
+        <button id="lageNext">▶︎</button>
+
+        <button id="openLageSolution">Lösung (PDF) öffnen</button>
+      </div>
+
+      <div id="lageTask" class="ref"></div>
+      <img id="lageImg" class="hidden" alt="Übungslage Bild" style="max-width:100%; border-radius:10px;">
+
+      <h3>Deine Lösung (optional)</h3>
+      <textarea id="lageAnswer" placeholder="Hier kannst du deinen Funkspruch / deine Notizen schreiben..."></textarea>
+
+      <div class="row buttons">
+        <button id="lageClear">Text löschen</button>
+      </div>
+
+      <div id="lageHint" class="hint"></div>
+    </section>
+
+    <!-- TAB 5: Prüfung Übungen 1-21 -->
+    <section id="tab-pruefung" class="panel">
+      <div class="row">
+        <label for="examSelect">Übung:</label>
+        <select id="examSelect"></select>
+
+        <button id="examPrev">◀︎</button>
+        <button id="examNext">▶︎</button>
+
+        <button id="openExamSolution">Lösung (PDF) öffnen</button>
+      </div>
+
+      <div id="examTask" class="ref"></div>
+      <img id="examImg" class="hidden" alt="Übung Bild" style="max-width:100%; border-radius:10px;">
+
+      <h3>Deine Lösung (optional)</h3>
+      <textarea id="examAnswer" placeholder="Hier kannst du deine Antwort/Übersetzung schreiben..."></textarea>
+
+      <div class="row buttons">
+        <button id="examClear">Text löschen</button>
+      </div>
+
+      <div id="examHint" class="hint"></div>
     </section>
   </main>
 

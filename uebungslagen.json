@@ -1,0 +1,176 @@
+[
+  {
+    "id": "I",
+    "task": "",
+    "image": "assets/lagen/lage_I_II.jpeg",
+    "hint": "Im Foto sind Übungslage I & II (Lösungsheft Seite 4/5)."
+  },
+  {
+    "id": "II",
+    "task": "",
+    "image": "assets/lagen/lage_I_II.jpeg",
+    "hint": "Im Foto sind Übungslage I & II (Lösungsheft Seite 4/5)."
+  },
+  {
+    "id": "III",
+    "task": "",
+    "image": "assets/lagen/lage_III_VI.jpeg",
+    "hint": "Im Foto sind Übungslage III–VI."
+  },
+  {
+    "id": "IV",
+    "task": "",
+    "image": "assets/lagen/lage_III_VI.jpeg",
+    "hint": "Im Foto sind Übungslage III–VI."
+  },
+  {
+    "id": "V",
+    "task": "",
+    "image": "assets/lagen/lage_III_VI.jpeg",
+    "hint": "Im Foto sind Übungslage III–VI."
+  },
+  {
+    "id": "VI",
+    "task": "",
+    "image": "assets/lagen/lage_III_VI.jpeg",
+    "hint": "Im Foto sind Übungslage III–VI."
+  },
+  {
+    "id": "VII",
+    "task": "",
+    "image": "assets/lagen/lage_VII.jpeg",
+    "hint": "Foto zeigt Übungslage VII (Aldebaran stört Notverkehr)."
+  },
+  {
+    "id": "IX",
+    "task": "",
+    "image": "assets/lagen/lage_IX.jpeg",
+    "hint": "Foto zeigt Übungslage IX (Beenden Sie den Funkverkehr)."
+  },
+  {
+    "id": "X",
+    "task": "",
+    "image": "assets/lagen/lage_X_XIII.jpeg",
+    "hint": "Im Foto sind Übungslage X–XIII."
+  },
+  {
+    "id": "XI",
+    "task": "",
+    "image": "assets/lagen/lage_X_XIII.jpeg",
+    "hint": "Im Foto sind Übungslage X–XIII."
+  },
+  {
+    "id": "XII",
+    "task": "",
+    "image": "assets/lagen/lage_X_XIII.jpeg",
+    "hint": "Im Foto sind Übungslage X–XIII."
+  },
+  {
+    "id": "XIII",
+    "task": "",
+    "image": "assets/lagen/lage_X_XIII.jpeg",
+    "hint": "Im Foto sind Übungslage X–XIII."
+  },
+  {
+    "id": "XIV",
+    "task": "",
+    "image": "assets/lagen/lage_XIV_XVII.jpeg",
+    "hint": "Im Foto sind Übungslage XIV–XVII."
+  },
+  {
+    "id": "XV",
+    "task": "",
+    "image": "assets/lagen/lage_XIV_XVII.jpeg",
+    "hint": "Im Foto sind Übungslage XIV–XVII."
+  },
+  {
+    "id": "XVI",
+    "task": "",
+    "image": "assets/lagen/lage_XIV_XVII.jpeg",
+    "hint": "Im Foto sind Übungslage XIV–XVII."
+  },
+  {
+    "id": "XVII",
+    "task": "",
+    "image": "assets/lagen/lage_XIV_XVII.jpeg",
+    "hint": "Im Foto sind Übungslage XIV–XVII."
+  },
+  {
+    "id": "XVIII",
+    "task": "",
+    "image": "assets/lagen/lage_XVIII_XXII.jpeg",
+    "hint": "Im Foto sind Übungslage XVIII–XXII."
+  },
+  {
+    "id": "XIX",
+    "task": "",
+    "image": "assets/lagen/lage_XVIII_XXII.jpeg",
+    "hint": "Im Foto sind Übungslage XVIII–XXII."
+  },
+  {
+    "id": "XX",
+    "task": "",
+    "image": "assets/lagen/lage_XVIII_XXII.jpeg",
+    "hint": "Im Foto sind Übungslage XVIII–XXII."
+  },
+  {
+    "id": "XXI",
+    "task": "",
+    "image": "assets/lagen/lage_XVIII_XXII.jpeg",
+    "hint": "Im Foto sind Übungslage XVIII–XXII."
+  },
+  {
+    "id": "XXII",
+    "task": "",
+    "image": "assets/lagen/lage_XVIII_XXII.jpeg",
+    "hint": "Im Foto sind Übungslage XVIII–XXII."
+  },
+  {
+    "id": "XXIII",
+    "task": "",
+    "image": "",
+    "hint": "Noch kein Foto hinterlegt – wenn du es hochlädst, trage ich es ein."
+  },
+  {
+    "id": "XXIV",
+    "task": "",
+    "image": "",
+    "hint": "Noch kein Foto hinterlegt – wenn du es hochlädst, trage ich es ein."
+  },
+  {
+    "id": "XXV",
+    "task": "",
+    "image": "assets/lagen/lage_XXV_XXVI.jpeg",
+    "hint": "Im Foto sind Übungslage XXV–XXVI."
+  },
+  {
+    "id": "XXVI",
+    "task": "",
+    "image": "assets/lagen/lage_XXV_XXVI.jpeg",
+    "hint": "Im Foto sind Übungslage XXV–XXVI."
+  },
+  {
+    "id": "XXVII",
+    "task": "",
+    "image": "assets/lagen/lage_XXVII_XXVIII.jpeg",
+    "hint": "Im Foto sind Übungslage XXVII–XXVIII."
+  },
+  {
+    "id": "XXVIII",
+    "task": "",
+    "image": "assets/lagen/lage_XXVII_XXVIII.jpeg",
+    "hint": "Im Foto sind Übungslage XXVII–XXVIII."
+  },
+  {
+    "id": "XXIX",
+    "task": "",
+    "image": "assets/lagen/lage_XXIX_XXX.jpeg",
+    "hint": "Im Foto sind Übungslage XXIX–XXX."
+  },
+  {
+    "id": "XXX",
+    "task": "",
+    "image": "assets/lagen/lage_XXIX_XXX.jpeg",
+    "hint": "Im Foto sind Übungslage XXIX–XXX."
+  }
+]
