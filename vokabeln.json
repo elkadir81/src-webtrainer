@@ -541,27 +541,53 @@
   },
 {
   "chapter": "Schiffsmerkmale",
-  "de": "Länge",
-  "en": "length"
+  "de": "Aufbauten",
+  "en": "superstructures"
 },
 {
   "chapter": "Schiffsmerkmale",
-  "de": "Breite",
-  "en": "beam"
+  "de": "mit der Aufschrift",
+  "en": "marked with"
 },
 {
   "chapter": "Schiffsmerkmale",
-  "de": "Tiefgang",
-  "en": "draught"
+  "de": "Fischereifahrzeug",
+  "en": "fishing vessel"
 },
 {
   "chapter": "Schiffsmerkmale",
-  "de": "Verdrängung",
-  "en": "displacement"
+  "de": "Motorraum",
+  "en": "engine room"
 },
 {
   "chapter": "Schiffsmerkmale",
-  "de": "Tonnage",
-  "en": "tonnage"
+  "de": "rot gestrichene",
+  "en": "red painted"
+},
+{
+  "chapter": "Schiffsmerkmale",
+  "de": "roter Rumpf",
+  "en": "red hull"
+},
+{
+  "chapter": "Schiffsmerkmale",
+  "de": "Steuerbord",
+  "en": "starboard"
+},
+{
+  "chapter": "Schiffsmerkmale",
+  "de": "weiße Segel",
+  "en": "white sails"
+},
+{
+  "chapter": "Schiffsmerkmale",
+  "de": "Backbord",
+  "en": "port side"
+},
+{
+  "chapter": "Schiffsmerkmale",
+  "de": "Besatzungsmitglied",
+  "en": "crew member"
 }
+
 ]
