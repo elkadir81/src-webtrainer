@@ -538,5 +538,30 @@
     "chapter": "Meldungsstruktur",
     "de": "in Zahlen",
     "en": "in figures"
-  }
+  },
+{
+  "chapter": "Schiffsmerkmale",
+  "de": "Länge",
+  "en": "length"
+},
+{
+  "chapter": "Schiffsmerkmale",
+  "de": "Breite",
+  "en": "beam"
+},
+{
+  "chapter": "Schiffsmerkmale",
+  "de": "Tiefgang",
+  "en": "draught"
+},
+{
+  "chapter": "Schiffsmerkmale",
+  "de": "Verdrängung",
+  "en": "displacement"
+},
+{
+  "chapter": "Schiffsmerkmale",
+  "de": "Tonnage",
+  "en": "tonnage"
+}
 ]
